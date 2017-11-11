@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Created by Costea Mihai Alexandru on 11/11/17 4:06 PM
+  ~ Copyright (c) 2017.
+  ~ All rights reserved.
+  ~
+  ~ Last modified 11/5/17 8:42 PM
+  -->
+
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
