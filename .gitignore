@@ -1,0 +1,6 @@
+#ignore Intellij artifacts when adding to git
+/.idea
+*.iml
+
+#ignore maven target folder as well
+/target
