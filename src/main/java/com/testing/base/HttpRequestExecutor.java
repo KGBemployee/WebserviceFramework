@@ -8,12 +8,52 @@
 
 package com.testing.base;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.InputStreamEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public class HttpRequestExecutor {
 
-    public static String invokeWebService(String webServiceURL, String requestXMLPath){
+    /**
+     * This method will send an xml to the webservice and return the response body that will
+     * also be in xml form
+     * @param xmlRequestFile provided by the TestCase object
+     * @return String the webservice xml response
+     */
+    public static String invokeWebService(File xmlRequestFile){
 
         // TODO: 11/5/2017 the method must send an xml to a webservice and collect an xml response
+        CloseableHttpClient client = HttpClients.createDefault();
+        HttpPost httpPost = new HttpPost(PropertiesHandler.getInstance().getValue("url"));
+        HttpResponse response;
+        String responseBody = null;
 
-        return null;
+        try {
+            InputStreamEntity streamEntity = new InputStreamEntity(new FileInputStream(xmlRequestFile));
+            streamEntity.setContentType("application/xml");
+            streamEntity.setChunked(true);
+            httpPost.setEntity(streamEntity);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        try {
+
+            response = client.execute(httpPost);
+            responseBody = EntityUtils.toString(response.getEntity());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return responseBody;
     }
 }
