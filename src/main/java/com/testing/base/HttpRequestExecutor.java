@@ -40,6 +40,8 @@ public class HttpRequestExecutor {
             InputStreamEntity streamEntity = new InputStreamEntity(new FileInputStream(xmlRequestFile));
             streamEntity.setContentType("application/xml");
             streamEntity.setChunked(true);
+            httpPost.setHeader("Content-type", "text/xml; charset=UTF-8");
+            httpPost.setHeader("SOAPAction", "");
             httpPost.setEntity(streamEntity);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
