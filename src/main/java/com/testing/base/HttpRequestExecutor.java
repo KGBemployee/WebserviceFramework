@@ -28,9 +28,9 @@ public class HttpRequestExecutor {
      * @param xmlRequestFile provided by the TestCase object
      * @return String the webservice xml response
      */
-    public static String invokeWebService(File xmlRequestFile){
+    public static String invokeWebService(File xmlRequestFile, String webServiceURL){
 
-        // TODO: 11/5/2017 the method must send an xml to a webservice and collect an xml response
+
         CloseableHttpClient client = HttpClients.createDefault();
         HttpPost httpPost = new HttpPost(PropertiesHandler.getInstance().getValue("url"));
         HttpResponse response;

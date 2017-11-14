@@ -8,6 +8,11 @@
 
 package com.testing.base;
 
+import org.junit.Assert;
+import org.xmlunit.builder.DiffBuilder;
+import org.xmlunit.builder.Input;
+import org.xmlunit.diff.Diff;
+
 import java.io.File;
 
 public class TestCase {
@@ -21,7 +26,14 @@ public class TestCase {
     }
 
     public void run(){
-        // TODO: 11/11/2017 add code that will run the test and report on the result
+        String requestResponse = HttpRequestExecutor.invokeWebService(testFile, PropertiesHandler.getInstance()
+                .getValue("meteringWebService"));
+
+        Diff differences = DiffBuilder.compare(Input.fromFile(expectedResultFile)).withNodeFilter(node -> !node.getNodeName()
+                .equalsIgnoreCase("DocumentPeriod")).withNodeFilter(node -> !node.getNodeName()
+                .equalsIgnoreCase("DocumentId")).withTest(Input.fromString(requestResponse)).build();
+
+        Assert.assertFalse(differences.toString(),differences.hasDifferences());
     }
 
     public File getTestFile() {
