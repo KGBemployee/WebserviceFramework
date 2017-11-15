@@ -9,6 +9,7 @@
 package com.tests.webServiceTests;
 
 import com.testing.base.FileNameResolver;
+import com.testing.base.PropertiesHandler;
 import com.testing.runner.TestCaseRunner;
 import org.junit.Test;
 
@@ -16,6 +17,9 @@ public class WebServiceTestOne {
 
     @Test
     public void testWebService() throws Exception {
-        TestCaseRunner.runTestCasesInList(FileNameResolver.matchTestsToResults("address","secondAddress"));
+        TestCaseRunner.runTestCasesInList(
+                FileNameResolver.matchTestsToResults("address",
+                        "secondAddress", PropertiesHandler.getInstance().
+                                getValue("meteringWebService")));
     }
 }

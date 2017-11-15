@@ -15,7 +15,7 @@ import java.util.List;
 
 public class FileNameResolver {
 
-    public static List<TestCase> matchTestsToResults(String testFilesRoot, String expectedResultsFilesRoot) {
+    public static List<TestCase> matchTestsToResults(String testFilesRoot, String expectedResultsFilesRoot, String webServiceURL) {
 
         List<File> testFiles = Arrays.asList(new File(testFilesRoot).listFiles());
         List<File> expectedResultFiles = Arrays.asList(new File(expectedResultsFilesRoot).listFiles());
